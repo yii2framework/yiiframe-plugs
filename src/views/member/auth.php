@@ -45,7 +45,8 @@ $form = ActiveForm::begin([
                     <?= $form->field($model, 'ip')->textInput(['placeholder' => '请输入产品要使用的IP,本地可用127.0.0.1'])->hint('') ?>
                     <?= $form->field($model, 'mobile')->textInput(['placeholder' => '请输入手机号码'])->hint('') ?>
                     <?= $form->field($model, 'mark')->textInput(['placeholder' => '请备注您的邮箱或QQ号码'])->hint('') ?>
-                    <input type="hidden" id="authform-cate" name="AuthForm[cate]" value="1">
+                    <?php // 授权产品按站点版本：common/config/version.php 里的 cate（3.x 为 1，4.x 为 2），没有时按 1 ?>
+                    <input type="hidden" id="authform-cate" name="AuthForm[cate]" value="<?= (int)(Yii::$app->debris->version()['cate'] ?? 1) ?: 1 ?>">
 
                     
 </div>
